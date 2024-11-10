@@ -7,6 +7,7 @@ let operacionActual = "";
 let primerNumero = null;
 let segundoNumero = null;
 let operador = null;
+const maxCaracteres = 14;
 
 // Funciones para operar
 function sumar(a, b) {
@@ -46,7 +47,7 @@ function seleccionarOperador(op) {
   } else if (operador) {
     segundoNumero = parseFloat(operacionActual);
     primerNumero = realizarOperacion(primerNumero, segundoNumero, operador);
-    pantalla.value = primerNumero
+    pantalla.value = primerNumero;
   }
   
   operador = op;
@@ -59,14 +60,14 @@ function calcular() {
   if (operador && operacionActual !== "") {
     segundoNumero = parseFloat(operacionActual);
     const resultado = realizarOperacion(primerNumero, segundoNumero, operador);
-    pantalla.value = resultado;
+    pantalla.value = resultado.toString().slice(0, maxCaracteres); 
     primerNumero = resultado;
     operacionActual = "";
     operador = null;
   }
 }
 
-// Función a realizar cuando se ha sellecionado un operador
+// Función a realizar cuando se ha seleccionado un operador
 function realizarOperacion(a, b, operador) {
   switch (operador) {
     case "+":
@@ -120,12 +121,14 @@ botones.forEach(boton => {
     if (["+", "-", "*", "/"].includes(botonApretado)) {
       seleccionarOperador(botonApretado);
     } else {
-      if (pantalla.value === "0" || pantalla.value === "ERROR!") {
-        operacionActual = botonApretado;
-      } else {
-        operacionActual += botonApretado;
+      if (operacionActual.length < maxCaracteres) {
+        if (pantalla.value === "0" || pantalla.value === "ERROR!") {
+          operacionActual = botonApretado;
+        } else {
+          operacionActual += botonApretado;
+        }
+        pantalla.value = operacionActual;
       }
-      pantalla.value = operacionActual;
     }
   });
 });
