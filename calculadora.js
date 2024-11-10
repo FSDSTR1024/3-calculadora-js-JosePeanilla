@@ -88,6 +88,11 @@ botones.forEach(boton => {
   boton.addEventListener("click", () => {
     const botonApretado = boton.textContent;
 
+    // Función para que si la calculadora retorna error limpie el historial por completo antes de escribir otra operación
+    if (pantalla.value ==="ERROR!") {
+      limpiarPantalla();
+    }
+    
     if (boton.id === "c") {
       limpiarPantalla();
       return;
