@@ -29,6 +29,24 @@ function dividir(a, b) {
   return a / b;
 }
 
+function porcentaje(a, b) {
+  return (a * b) / 100;
+}
+
+function potencia(a, b) {
+  return Math.pow(a, b);
+}
+
+function raizCuadrada(a) {
+  if (a < 0) return "ERROR!";
+  return Math.sqrt(a);
+}
+
+function inverso(a) {
+  if (a === 0) return "ERROR!";
+  return 1 / a;
+}
+
 // Función para limpiar la pantalla
 function limpiarPantalla() {
   pantalla.value = "0";
@@ -78,6 +96,14 @@ function realizarOperacion(a, b, operador) {
       return multiplicar(a, b);
     case "/":
       return dividir(a, b);
+    case "%":
+      return porcentaje(a, b);
+    case "^":
+      return potencia(a, b);
+    case "√":
+      return raizCuadrada(a);
+    case "1/x":
+      return inverso(a); 
     default:
       return b;
   }
@@ -123,7 +149,17 @@ botones.forEach(boton => {
       return;
     }
 
-    if (["+", "-", "*", "/"].includes(botonApretado)) {
+    if (botonApretado === "%") {
+      seleccionarOperador("%");
+    } else if (botonApretado === "^") {
+      seleccionarOperador("^");
+    } else if (botonApretado === "√") {
+      pantalla.value = raizCuadrada(parseFloat(pantalla.value)).toString().slice(0, maxCaracteres);
+      operacionActual = pantalla.value;
+    } else if (botonApretado === "1/x") {
+      pantalla.value = inverso(parseFloat(pantalla.value)).toString().slice(0, maxCaracteres);
+      operacionActual = pantalla.value;
+    } else if (["+", "-", "*", "/"].includes(botonApretado)) {
       seleccionarOperador(botonApretado);
     } else {
       if (operacionActual.length < maxCaracteres) {

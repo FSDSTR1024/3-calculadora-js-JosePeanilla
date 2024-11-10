@@ -94,3 +94,12 @@ input::placeholder {
 .editor:hover {
     background-color: #FF8000;
 }
+
+.operador-complejo {
+    background-color: #DAF7A6;
+    color: black;
+}
+  
+.operador-complejo:hover {
+    background-color: #EEEB2B;
+}
