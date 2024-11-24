@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background-color: #242424;
+    display: grid;
+    place-items: center;
+}
+
+.calculadora {
+    background-color: #48bfff;
+    color: white;
+    width: 350px;
+    max-width: 100%;
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: .5rem;
+    box-shadow: 0 0 20px #48bfff;
+}
+
+.pantalla {
+    grid-column: 1 / 5;
+    background-color: #090C31;
+    color: white;
+    padding: 1.5rem;
+    font-size: 2rem;
+    text-align: right;
+    border-radius: .5rem;
+    margin-bottom: 1.5rem;
+    font-family: monospace;
+    font-weight: bold;
+}
+
+input::placeholder {
+    color: white;
+}
+
+.boton {
+    background-color: #006DA7;
+    color: white;
+    border: 0;
+    padding: 1.5rem .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: .5rem;
+    cursor: pointer;
+}
+
+.boton:hover {
+    background-color: #004F78;
+}
+
+#cero {
+    grid-column: span 2;
+}
+
+#igual {
+    grid-row: span 2;
+    background-color: #E65766;
+}
+
+#igual:hover {
+    background-color: #E00004;
+}
+
+#c {
+    background-color: #008F6D;
+}
+
+#c:hover {
+    background-color: #008000;
+}
+
+.operador {
+    background-color: #4F5382;
+}
+
+.operador:hover {
+    background-color: #572364;
+}
+
+.editor {
+    background-color: #F6834F;
+}
+
+.editor:hover {
+    background-color: #FF8000;
+}
+
+.operador-complejo {
+    background-color: #DAF7A6;
+    color: black;
+}
+  
+.operador-complejo:hover {
+    background-color: #EEEB2B;
+}
