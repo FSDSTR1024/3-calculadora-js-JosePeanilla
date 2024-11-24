@@ -7,6 +7,7 @@ let operacionActual = "";
 let primerNumero = null;
 let segundoNumero = null;
 let operador = null;
+let resultadoMostrado = false;
 const maxCaracteres = 14;
 
 // Funciones para operar
@@ -79,7 +80,6 @@ function calcular() {
     segundoNumero = parseFloat(operacionActual);
     const resultado = realizarOperacion(primerNumero, segundoNumero, operador);
     pantalla.value = resultado.toString().slice(0, maxCaracteres); 
-    primerNumero = resultado;
     operacionActual = "";
     operador = null;
   }
@@ -114,6 +114,12 @@ botones.forEach(boton => {
   boton.addEventListener("click", () => {
     const botonApretado = boton.textContent;
 
+    //Función para que si se acaba de mostrar un resultado la calculadora reinicie la operación actual
+    if (resultadoMostrado && !["+", "-", "*", "/", "%", "^", "√", "1/x", "igual"].includes(boton.id)) {
+      limpiarPantalla();
+      resultadoMostrado = false;
+    }
+
     // Función para que si la calculadora retorna error limpie el historial por completo antes de escribir otra operación
     if (pantalla.value ==="ERROR!") {
       limpiarPantalla();
@@ -136,6 +142,7 @@ botones.forEach(boton => {
 
     if (boton.id === "igual") {
       calcular();
+      resultadoMostrado = true;
       return;
     }
 
@@ -161,6 +168,7 @@ botones.forEach(boton => {
       operacionActual = pantalla.value;
     } else if (["+", "-", "*", "/"].includes(botonApretado)) {
       seleccionarOperador(botonApretado);
+      resultadoMostrado = false;
     } else {
       if (operacionActual.length < maxCaracteres) {
         if (pantalla.value === "0" || pantalla.value === "ERROR!") {
